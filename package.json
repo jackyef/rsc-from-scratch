@@ -5,13 +5,14 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node src",
+    "start": "nodemon src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "escape-html": "^1.0.3"
+    "escape-html": "^1.0.3",
+    "nodemon": "^2.0.22"
   }
 }
