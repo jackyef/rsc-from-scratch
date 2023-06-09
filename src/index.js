@@ -1,34 +1,24 @@
 import { createServer } from 'http';
 import { readFile } from 'fs/promises';
-import escapeHtml from  'escape-html';
+
+import { renderJSXToHTMLString } from './renderJSXToHTML.js'
 
 createServer(async (req, res) => {
   const author = "Jae Doe";
   const postContent = await readFile("./posts/hello-world.txt", "utf8");
+  const jsx = (
+    <html>
+      <body>Hello world</body>
+    </html>
+  )
+  const htmlString = renderJSXToHTMLString(jsx);
   sendHTML(
     res,
-    `<html>
-      <head>
-        <title>My blog</title>
-      </head>
-      <body>
-        <nav>
-          <a href="/">Home</a>
-          <hr />
-        </nav>
-        <article>
-          ${escapeHtml(postContent)}
-        </article>
-        <footer>
-          <hr>
-          <p><i>(c) ${escapeHtml(author)}, ${new Date().getFullYear()}</i></p>
-        </footer>
-      </body>
-    </html>`
+    htmlString
   );
 }).listen(8080);
 
 function sendHTML(res, html) {
-  res.writeHead(200, { "Content-Type": "text/html" });
+  res.setHeader("Content-Type", "text/html");
   res.end(html);
 }
