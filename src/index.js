@@ -3,7 +3,7 @@ import { readFile } from 'fs/promises';
 import escapeHtml from  'escape-html';
 
 createServer(async (req, res) => {
-  const author = "Jae Doeasdasd";
+  const author = "Jae Doe";
   const postContent = await readFile("./posts/hello-world.txt", "utf8");
   sendHTML(
     res,
